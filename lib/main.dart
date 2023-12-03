@@ -15,15 +15,15 @@ class CryptoCurrenciesListApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color.fromARGB(255, 31, 31, 31),
           appBarTheme: const AppBarTheme(
               color: Color.fromARGB(255, 31, 31, 31),
+              iconTheme: IconThemeData(
+                color: Colors.white
+              ),
               titleTextStyle: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w700
-              )),
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700)),
           dividerColor: Colors.white24,
-          listTileTheme: const ListTileThemeData(
-              iconColor: Colors.white
-          ),
+          listTileTheme: const ListTileThemeData(iconColor: Colors.white),
           textTheme: TextTheme(
               bodyMedium: const TextStyle(
                   fontSize: 20,
@@ -33,7 +33,10 @@ class CryptoCurrenciesListApp extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: Colors.white.withOpacity(0.6)))),
-      home: const CryptoListScreen(),
+      routes: {
+        "/": (context) => const CryptoListScreen(),
+        "/coin": (context) => const CryptoCoinScreen()
+      },
     );
   }
 }
@@ -58,23 +61,38 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
       body: ListView.separated(
         itemCount: 10,
         separatorBuilder: (context, index) => const Divider(),
-        itemBuilder: (BuildContext context, int index) =>
-            ListTile(
-              leading: SvgPicture.asset(
-                "assets/svg/bitcoin.svg",
-                height: 30,
-                width: 30,
-              ),
-              title: Text(
-                "Bitcoin",
-                style: theme.textTheme.bodyMedium,
-              ),
-              subtitle: Text(
-                "200000\$",
-                style: theme.textTheme.labelSmall,
-              ),
-              trailing: const Icon(Icons.arrow_forward_ios),
-            ),
+        itemBuilder: (BuildContext context, int index) => ListTile(
+          leading: SvgPicture.asset(
+            "assets/svg/bitcoin.svg",
+            height: 30,
+            width: 30,
+          ),
+          title: Text(
+            "Bitcoin",
+            style: theme.textTheme.bodyMedium,
+          ),
+          subtitle: Text(
+            "200000\$",
+            style: theme.textTheme.labelSmall,
+          ),
+          trailing: const Icon(Icons.arrow_forward_ios),
+          onTap: () {
+            Navigator.of(context).pushNamed("/coin");
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class CryptoCoinScreen extends StatelessWidget {
+  const CryptoCoinScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Crypto coin"),
       ),
     );
   }
