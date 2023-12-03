@@ -33,19 +33,19 @@ class CryptoCurrenciesListApp extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: Colors.white.withOpacity(0.6)))),
-      home: const HomeScreen(),
+      home: const CryptoListScreen(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class CryptoListScreen extends StatefulWidget {
+  const CryptoListScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<CryptoListScreen> createState() => _CryptoListScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CryptoListScreenState extends State<CryptoListScreen> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
