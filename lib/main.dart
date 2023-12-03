@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -18,6 +20,7 @@ class CryptoCurrenciesListApp extends StatelessWidget {
               iconTheme: IconThemeData(
                 color: Colors.white
               ),
+              centerTitle: true,
               titleTextStyle: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -56,7 +59,6 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("CryptoCurrenciesList"),
-        centerTitle: true,
       ),
       body: ListView.separated(
         itemCount: 10,
@@ -77,7 +79,10 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
           ),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () {
-            Navigator.of(context).pushNamed("/coin");
+            Navigator.of(context).pushNamed(
+                "/coin",
+              arguments: "Bitcoin"
+            );
           },
         ),
       ),
@@ -85,14 +90,29 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
   }
 }
 
-class CryptoCoinScreen extends StatelessWidget {
+class CryptoCoinScreen extends StatefulWidget {
   const CryptoCoinScreen({super.key});
 
+  @override
+  State<CryptoCoinScreen> createState() => _CryptoCoinScreenState();
+}
+
+class _CryptoCoinScreenState extends State<CryptoCoinScreen> {
+
+  String? coinName;
+
+  @override
+  void didChangeDependencies() {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    assert(args != null && args is String, "You must provide String args");
+    coinName = args as String;
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Crypto coin"),
+        title: Text(coinName ?? "..."),
       ),
     );
   }
