@@ -15,6 +15,10 @@ final theme = ThemeData(
     dialogBackgroundColor: Colors.white,
     listTileTheme: const ListTileThemeData(iconColor: Colors.white),
     textTheme: TextTheme(
+        headlineMedium: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w700
+        ),
         bodyMedium: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
