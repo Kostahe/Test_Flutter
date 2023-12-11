@@ -11,6 +11,13 @@ final theme = ThemeData(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.w700)),
+    colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.yellow,
+    ),
+    cardTheme: const CardTheme(
+      color: Color.fromARGB(255, 19, 19, 19),
+      surfaceTintColor: Color.fromARGB(255, 19, 19, 19),
+    ),
     dividerColor: Colors.white24,
     dialogBackgroundColor: Colors.white,
     listTileTheme: const ListTileThemeData(iconColor: Colors.white),

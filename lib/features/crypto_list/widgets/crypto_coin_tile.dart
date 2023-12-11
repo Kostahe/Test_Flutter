@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:test_flutter2/repositories/crypto_coins/models/crypto_coin.dart';
 
 
@@ -11,7 +10,6 @@ class CryptoCoinTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final formatCurrency = NumberFormat("#,##0.00", "en_US");
 
     return ListTile(
       leading: Image.network(coin?.imageUrl ?? ""),
@@ -20,12 +18,12 @@ class CryptoCoinTile extends StatelessWidget {
         style: theme.textTheme.bodyMedium,
       ),
       subtitle: Text(
-        "${formatCurrency.format(coin?.priceInUSD ?? 0)}\$",
+       "${coin?.priceInUSD ?? "null"}\$" ,
         style: theme.textTheme.labelSmall,
       ),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {
-        Navigator.of(context).pushNamed("/coin", arguments: "Bitcoin");
+        Navigator.of(context).pushNamed("/coin", arguments: coin);
       },
     );
   }
